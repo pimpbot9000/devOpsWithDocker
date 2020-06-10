@@ -1,0 +1,73 @@
+Docker Cheat Sheat
+
+List images:
+Docker images
+
+List containers:
+docker containers -ls
+
+
+List containers (all, even those not running):
+docker containers -ls -a
+
+List filtered containers:
+docker container ls -a | grep hello-world
+
+Remove container:
+
+docker rm [pari ekaa kirjainta containerin id:stä]
+
+If you have hundreds of stopped containers and you wish to delete them all, 
+you should use :
+
+docker container prune
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\tvali> docker run -it devopsdockeruh/pull_exercise
+Give me the password: basics
+You found the correct password. Secret message is:
+"This is the secret message"
+
+PS C:\Users\tvali>  
+
+docker run -d --name e15b ubuntu:16.04
+
+docker exec -it looper bash
+
+
+
+
+# Create a new container from image ubuntu:16.04
+> docker run -d -it --name exer15 ubuntu:16.04
+
+# Enter the container (bash)
+> docker exec -it exer15 bash
+
+# Installing curl initially failed so I had to run
+> apt-get update
+
+# Install curl:
+> apt-get install curl
+
+# exit the container
+> exit
+
+# Run process
+> docker exec -it exer15 sh -c "echo 'Input website:'; read website; echo 'Searching..'; sleep 1; curl http://$website;" 
+
+#and the magic happened:
+
+Input website:
+google.fi
+Searching..
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.fi/">here</A>.
+</BODY></HTML>
+                                                                                                                                                                                                                                                              
