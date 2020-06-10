@@ -1,44 +1,4 @@
-Docker Cheat Sheat
-
-List images:
-Docker images
-
-List containers:
-docker containers -ls
-
-
-List containers (all, even those not running):
-docker containers -ls -a
-
-List filtered containers:
-docker container ls -a | grep hello-world
-
-Remove container:
-
-docker rm [pari ekaa kirjainta containerin id:stä]
-
-If you have hundreds of stopped containers and you wish to delete them all, 
-you should use :
-
-docker container prune
-
-Windows PowerShell
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-Try the new cross-platform PowerShell https://aka.ms/pscore6
-
-PS C:\Users\tvali> docker run -it devopsdockeruh/pull_exercise
-Give me the password: basics
-You found the correct password. Secret message is:
-"This is the secret message"
-
-PS C:\Users\tvali>  
-
-docker run -d --name e15b ubuntu:16.04
-
-docker exec -it looper bash
-
-
+# Solution to the exercise 1.5
 
 
 # Create a new container from image ubuntu:16.04
