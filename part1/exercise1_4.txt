@@ -1,0 +1,21 @@
+C:\Users\tvali\devOpsWithDocker\part1>docker exec -it bash_exercise bash
+root@feb343206182:/usr/app# tail -f ./logs.txt
+Wed, 10 Jun 2020 14:21:04 GMT
+Secret message is:
+"Docker is easy"
+Wed, 10 Jun 2020 14:21:10 GMT
+Wed, 10 Jun 2020 14:21:13 GMT
+Wed, 10 Jun 2020 14:21:16 GMT
+Wed, 10 Jun 2020 14:21:19 GMT
+Secret message is:
+"Docker is easy"
+Wed, 10 Jun 2020 14:21:25 GMT
+Wed, 10 Jun 2020 14:21:28 GMT
+Wed, 10 Jun 2020 14:21:31 GMT
+Wed, 10 Jun 2020 14:21:34 GMT
+Secret message is:
+"Docker is easy"
+Wed, 10 Jun 2020 14:21:40 GMT
+Wed, 10 Jun 2020 14:21:43 GMT
+Wed, 10 Jun 2020 14:21:46 GMT
+Wed, 10 Jun 2020 14:21:49 GMT
