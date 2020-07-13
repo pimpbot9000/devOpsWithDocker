@@ -12,7 +12,7 @@
 # Then after trial and error realize that instead of overriding the CMD in the image
 # one can just put CMD ["-c"] in the Dockerfile.
 # Build the dockerfile:
-> docker build -t
+> docker build -t docker-clock .
 
 # After building we can run the image
 > docker run docker-clock
