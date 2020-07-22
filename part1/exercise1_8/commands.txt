@@ -1,0 +1,75 @@
+# Step 1. Pull the image
+> docker pull devopsdockeruh/first_volume_exercise
+
+# Step 2. Create an empty file logs.txt to prevent docker creating a folder logs.txt at host. 
+# Since windows sucks and does not have 'touch' we use
+> type nul > logs.txt 
+
+# Step 3. Mount the logs.txt-file at host machine
+
+# Step 4. Run container + mount the logs.txt file at host machine 
+> docker run -v C:/Users/tvali/devOpsWithDocker/part1/exercise1_8/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
+
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+
+# Step 5. CTRC-C to exit
+
+# Step 6. check out running containers
+> docker container ls
+CONTAINER ID        IMAGE                                  COMMAND                  CREATED              STATUS              PORTS               NAMES
+db4d08d14289        devopsdockeruh/first_volume_exercise   "docker-entrypoint.s…"   About a minute ago   Up About a minute                       gallant_darwin
+
+# Step 7. kill the container
+> docker kill db4
+
+# Step 8. Let's the contents of logs.txt at host 
+
+> type logs.txt
+
+Wed, 22 Jul 2020 15:07:06 GMT
+Wed, 22 Jul 2020 15:07:09 GMT
+Wed, 22 Jul 2020 15:07:12 GMT
+Wed, 22 Jul 2020 15:07:15 GMT
+Secret message is:
+"Volume bind mount is easy"
+Wed, 22 Jul 2020 15:07:21 GMT
+Wed, 22 Jul 2020 15:07:24 GMT
+Wed, 22 Jul 2020 15:07:27 GMT
+Wed, 22 Jul 2020 15:07:30 GMT
+Secret message is:
+"Volume bind mount is easy"
+Wed, 22 Jul 2020 15:07:36 GMT
+Wed, 22 Jul 2020 15:07:39 GMT
+Wed, 22 Jul 2020 15:07:42 GMT
+Wed, 22 Jul 2020 15:07:45 GMT
+Secret message is:
+"Volume bind mount is easy"
+Wed, 22 Jul 2020 15:07:51 GMT
+Wed, 22 Jul 2020 15:07:54 GMT
+Wed, 22 Jul 2020 15:07:57 GMT
+Wed, 22 Jul 2020 15:08:00 GMT
+Secret message is:
+"Volume bind mount is easy"
+Wed, 22 Jul 2020 15:08:06 GMT
+Wed, 22 Jul 2020 15:08:09 GMT
+Wed, 22 Jul 2020 15:08:12 GMT
+Wed, 22 Jul 2020 15:08:15 GMT
+Secret message is:
+"Volume bind mount is easy"
+Wed, 22 Jul 2020 15:08:21 GMT
+Wed, 22 Jul 2020 15:08:24 GMT
+Wed, 22 Jul 2020 15:08:27 GMT
+Wed, 22 Jul 2020 15:08:30 GMT
+Secret message is:
+"Volume bind mount is easy"
+Wed, 22 Jul 2020 15:08:36 GMT
