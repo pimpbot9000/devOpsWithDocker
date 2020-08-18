@@ -2,12 +2,10 @@
 > docker pull devopsdockeruh/first_volume_exercise
 
 # Step 2. Create an empty file logs.txt to prevent docker creating a folder logs.txt at host. 
-# Since windows sucks and does not have 'touch' we use
+# Since windows terminal does not have 'touch' we use
 > type nul > logs.txt 
 
-# Step 3. Mount the logs.txt-file at host machine
-
-# Step 4. Run container + mount the logs.txt file at host machine 
+# Step 3. Run container + mount the logs.txt file at host machine 
 > docker run -v C:/Users/tvali/devOpsWithDocker/part1/exercise1_8/logs.txt:/usr/app/logs.txt devopsdockeruh/first_volume_exercise
 
 Wrote to file /usr/app/logs.txt
@@ -22,17 +20,17 @@ Wrote to file /usr/app/logs.txt
 Wrote to file /usr/app/logs.txt
 Wrote to file /usr/app/logs.txt
 
-# Step 5. CTRC-C to exit
+# Step 4. CTRC-C to exit
 
-# Step 6. check out running containers
+# Step 5. check out running containers
 > docker container ls
 CONTAINER ID        IMAGE                                  COMMAND                  CREATED              STATUS              PORTS               NAMES
 db4d08d14289        devopsdockeruh/first_volume_exercise   "docker-entrypoint.s…"   About a minute ago   Up About a minute                       gallant_darwin
 
-# Step 7. kill the container
+# Step 6. kill the container (because killing is fun)
 > docker kill db4
 
-# Step 8. Let's the contents of logs.txt at host 
+# Step 7. Let's see the contents of logs.txt at host 
 
 > type logs.txt
 
