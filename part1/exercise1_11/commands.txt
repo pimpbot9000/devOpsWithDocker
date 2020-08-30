@@ -1,0 +1,51 @@
+Step 1. Download the https://github.com/docker-hy/backend-example-docker
+
+Step 2. Create a dockerfile that copies the backend-example-docker to image, installs stuff and
+ exposes port 8000 and runs the server.
+
+Step 3. Build the image
+> docker build -t backend111 .
+...
+
+
+Step 4. Run the container mapping the exposed port 8000 to 1388 and mount logs.txt
+> docker run -v C:/Users/tvali/devOpsWithDocker/part1/exercise1_11/logs.txt:/usr/backend/logs.txt -p 1338:8000 backend111
+
+Step 5. Go to browser and hit the refresh like a rabid mounkey of a californian plague ridden squirrel!
+Container output:
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 18.565 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.900 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 4.346 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.611 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 4.105 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 4.168 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.951 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.756 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.972 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 4.310 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.871 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.670 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 4.950 ms
+::ffff:172.17.0.1 - GET / HTTP/1.1 304 - - 3.915 ms
+
+Contents of the mounted logs.txt at host
+8/30/2020, 1:05:08 PM: Connection received in root
+8/30/2020, 1:05:11 PM: Connection received in root
+8/30/2020, 1:05:13 PM: Connection received in root
+8/30/2020, 1:05:15 PM: Connection received in root
+8/30/2020, 1:05:17 PM: Connection received in root
+8/30/2020, 1:05:42 PM: Connection received in root
+8/30/2020, 1:05:50 PM: Connection received in root
+8/30/2020, 1:05:50 PM: Connection received in root
+8/30/2020, 1:05:51 PM: Connection received in root
+8/30/2020, 1:05:51 PM: Connection received in root
+8/30/2020, 1:05:51 PM: Connection received in root
+8/30/2020, 1:05:51 PM: Connection received in root
+8/30/2020, 1:05:51 PM: Connection received in root
+8/30/2020, 1:05:51 PM: Connection received in root
+8/30/2020, 1:05:52 PM: Connection received in root
+8/30/2020, 1:05:52 PM: Connection received in root
+8/30/2020, 1:05:52 PM: Connection received in root
+8/30/2020, 1:05:52 PM: Connection received in root
+
+
