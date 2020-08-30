@@ -8,7 +8,7 @@ Step 1. Run the server (did not bother mounting the logs.txt this time)
 > docker run -p 1338:8000 backend112
 
 Step 2. Run the frontend
-> docker run -p 1337:8000 frontend112
+> docker run -p 1337:5000 frontend112
 
 Step 3. Open the browser at localost:1337, click the button. See the screenshot.png
 
