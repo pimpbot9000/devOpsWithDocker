@@ -1,0 +1,22 @@
+STEP 1. Clone the repo 
+> git clone https://github.com/docker-hy/frontend-example-docker
+
+STEP 2. Create the Dockerfile (see the actual Dockerfile). The dockerfile copies the frontend-project to image and exposes port 5000.
+
+STEP 3. Build the Dockerfile
+> docker build -t frontend110 .
+
+...
+
+STEP 4. Run the docker image as detached with exposed port mapped to 1337
+> docker run -d -p 1337:5000 frontend110
+705a60081dc49fe92ed4510294b7408c4691da751d1e1fdbfd456824b7f934bc
+
+STEP 5. Check out the port mapping
+> docker port 705
+5000/tcp -> 0.0.0.0:1337
+
+STEP 6. Looking good so far so let's fire up the browser! Whoa it works (see the screenshot, browser.png)!
+
+STEP 7. We're done here. Kill the container.
+> docker kill 705
