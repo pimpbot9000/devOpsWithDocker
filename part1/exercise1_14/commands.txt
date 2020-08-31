@@ -1,0 +1,50 @@
+# See the Dockerfile in folder /rails-example-project
+# (after trial and error the dockerfile was beat into submission, with bundle versions or what not)
+# (No idea what these Gemfiles are, I just followed instructions)
+
+Step 1. Create dockerfile in the same directory as the project
+
+Step 2. Build the dockerfile
+> docker build -t ruby
+...
+
+Step 3. Run the container by mapping the exposed port 3000 -> 1337 and start browser at localhost:1337
+> docker run -it -p 1337:3000 ruby
+
+=> Booting Puma
+=> Rails 5.2.2.1 application starting in development
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.0 (ruby 2.6.0-p0), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://0.0.0.0:3000
+Use Ctrl-C to stop
+Started GET "/" for 172.17.0.1 at 2020-08-31 13:11:46 +0000
+Cannot render console from 172.17.0.1! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+   (0.2ms)  SELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC
+  ↳ /usr/local/bundle/gems/activerecord-5.2.2.1/lib/active_record/log_subscriber.rb:98
+Processing by PressesController#new as HTML
+   (0.2ms)  SELECT COUNT(*) FROM "presses"
+  ↳ app/controllers/presses_controller.rb:18
+  Rendering presses/new.html.erb within layouts/application
+  Rendered presses/_form.html.erb (2.4ms)
+  Rendered presses/new.html.erb within layouts/application (30.3ms)
+Completed 200 OK in 1171ms (Views: 1139.8ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/presses" for 172.17.0.1 at 2020-08-31 13:11:51 +0000
+Cannot render console from 172.17.0.1! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by PressesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+Ce0qNi1AR9LKfcjj+WLkmJv3jBnIXnj/mm448FCLHkqLfWcewA/NbqPgiVmNsPyVO1MyyZmgx3RUUm68SDGBQ==", "commit"=>"Press"}
+   (0.2ms)  begin transaction
+  ↳ app/controllers/presses_controller.rb:31
+  Press Create (0.9ms)  INSERT INTO "presses" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2020-08-31 13:11:51.330145"], ["updated_at", "2020-08-31 13:11:51.330145"]]
+  ↳ app/controllers/presses_controller.rb:31
+   (49.6ms)  commit transaction
+  ↳ app/controllers/presses_controller.rb:31
+Redirected to http://localhost:1337/presses/new
+Completed 302 Found in 64ms (ActiveRecord: 50.6ms)
+...
+
+!!! See the screenshot.png 
