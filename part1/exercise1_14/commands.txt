@@ -5,7 +5,7 @@
 Step 1. Create dockerfile in the same directory as the project
 
 Step 2. Build the dockerfile
-> docker build -t ruby
+> docker build -t ruby .
 ...
 
 Step 3. Run the container by mapping the exposed port 3000 -> 1337 and start browser at localhost:1337
