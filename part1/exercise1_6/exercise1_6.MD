@@ -1,6 +1,8 @@
 ### Step 1. 
 First pull the image
+```
 > docker pull devopsdockeruh/overwrite_cmd_exercise
+```
 
 ### Step 2.
 Run the image to see what happens
@@ -19,7 +21,8 @@ Build the dockerfile:
 ```
 > docker build -t docker-clock .
 ```
-# After building we can run the image
+### Step 4.
+After building we can run the image
 ```
 > docker run docker-clock
 
