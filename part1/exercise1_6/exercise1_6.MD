@@ -1,20 +1,26 @@
-# First pull the image
+### Step 1. 
+First pull the image
 > docker pull devopsdockeruh/overwrite_cmd_exercise
 
-# Run the image to see what happens
+### Step 2.
+Run the image to see what happens
+```
 > docker run devopsdockeruh/overwrite_cmd_exercise
 
 -h,             --help                  to show this message
 -a [age],       --adult [age]           to check if you're older than 18
 -c [time],      --clock [time]          to start a clock
 -t [size],      --triangle [size]       to draw a triangle, takes second argument as the size
-
-# Then after trial and error realize that instead of overriding the CMD in the image
-# one can just put CMD ["-c"] in the Dockerfile.
-# Build the dockerfile:
+```
+### Step 3.
+Then after trial and error realize that instead of overriding the CMD in the image
+one can just put CMD ["-c"] in the Dockerfile.
+Build the dockerfile:
+```
 > docker build -t docker-clock .
-
+```
 # After building we can run the image
+```
 > docker run docker-clock
 
 1
@@ -29,6 +35,6 @@
 10
 11
 12
-
+```
 
 
