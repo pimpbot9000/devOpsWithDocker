@@ -37,7 +37,7 @@ d0679984992c        my_node    "/bin/bash"              6 minutes ago       Exit
 I checked out the diffs in the container
 > docker diff d06
 
-...a lot of stuff appears ...
+...a lot of stuff appears ... (all the added/changed/removed files during the installation)
 
 I commit the changes to the container (giving it - or the new image - a new name/tag).
 ```
