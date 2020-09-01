@@ -1,3 +1,0 @@
-Linkki:
-
-https://dockertesttumppu.herokuapp.com/
