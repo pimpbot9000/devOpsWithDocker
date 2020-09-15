@@ -12,6 +12,4 @@ Since there's already a proper ```docker-compose.yml``` in the repo all is neede
 
 Open a browser and see if it works, and by golly, it does!
 
-<img src=“./screenshot.png”>
-<img src="./screenshots/main_activity.png" width="40%">
-
+<img src=screenshot.png width="50%">
