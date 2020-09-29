@@ -41,3 +41,19 @@ services:
 volumes:
   database:
 ```
+
+Let's fire up this bad boy.
+```
+> docker-compose up
+```
+
+Playing around with the web app and inspecting the console shows that messages are saved in the database
+```
+backend_1   | Executing (default): INSERT INTO "messages" ("id","body","created_at","updated_at") 
+VALUES (DEFAULT,$1,$2,$3) RETURNING "id","body","created_at","updated_at";
+```
+Finally, a screenshot as a proof.
+
+<img src=screenshot.PNG width="60%">
+
+Sending messages and retrieving the messages now work nicely in frontend.
