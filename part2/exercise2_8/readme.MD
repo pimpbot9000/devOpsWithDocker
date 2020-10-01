@@ -61,5 +61,5 @@ since the nginx used the docker network.
 In addition the ```API_URL``` and ```FRONT_URL``` variables were changed to reflect the reverse-proxy settings to preserve the
 functionality.
 
-Since the reverse-proxying (is that a word?) happened inside the Docker netword there was no need to publish the front- and backend 
+Since the reverse-proxying (is that a word?) happened inside the Docker network there was no need to publish the front- and backend 
 ports any more.
