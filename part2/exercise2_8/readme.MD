@@ -1,7 +1,5 @@
-## Exercise 2.6
+## Exercise 2.8
 
-Note: In previous exercise I modified the Dockerfile in both backend and frontend, adding some enviroment values. Now I realized
-this is not necessary: once can add enviroment values in ```docker-compose.yml``` file. Live and learn.
 
 The ```docker-compose.yml``` file:
 
@@ -9,24 +7,25 @@ The ```docker-compose.yml``` file:
 version: "3.5"
 
 services:
+
   backend:
     build: ./backend/.
-    ports:
-      - 1338:8000
     environment:
-      - FRONT_URL=http://localhost:1337
+      - FRONT_URL=http://localhost
       - REDIS=redis
       - REDIS_PORT=6379
       - DB_USERNAME=postgres
       - DB_PASSWORD=password123
       - DB_NAME=postgres
       - DB_HOST=db
+    container_name: backend
+
   frontend:
     build: ./frontend/.
-    ports:
-      - 1337:5000
     environment:
-      - API_URL=http://localhost:1338
+      - API_URL=http://localhost/api
+    container_name: frontend
+
   redis:
     image: redis
 
@@ -38,22 +37,29 @@ services:
     container_name: database_backend
     volumes:
       - database:/var/lib/postgresql/data
+
+  proxy:
+    image: nginx
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
 volumes:
   database:
 ```
 
-Let's fire up this bad boy.
-```
-> docker-compose up
-```
+Note that the changes compared to exercise 2.6 include adding the nginx as reverse proxy, mounting a local ```nginx.conf``` file
+to configure ```proxy_pass``` urls. It took a while (trial and error + google) to figure out the proper format for ```proxy_pass``` urls.
 
-Playing around with the web app and inspecting the console shows that messages are saved in the database
+The correct format turned out to be
 ```
-backend_1   | Executing (default): INSERT INTO "messages" ("id","body","created_at","updated_at") 
-VALUES (DEFAULT,$1,$2,$3) RETURNING "id","body","created_at","updated_at";
+http://container_name:port
 ```
-Finally, a screenshot as a proof.
+since the nginx used the docker network.
 
-<img src=screenshot.PNG width="60%">
+In addition the ```API_URL``` and ```FRONT_URL``` variables were changed to reflect the reverse-proxy settings to preserve the
+functionality.
 
-Sending messages and retrieving the messages now work nicely in frontend.
+Since the reverse-proxying (is that a word?) happened inside the Docker netword there was no need to publish the front- and backend 
+ports any more.
