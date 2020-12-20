@@ -1,4 +1,4 @@
-## Exercise 2.9
+## Exercise 2.9 & 2.10
 
 
 The ```docker-compose.yml``` file:
@@ -52,3 +52,5 @@ volumes:
 
 Changes compared to exercise 2.8: Not much, use the ```PGDATA``` enviroment variable for the Postgres image to define location
 for the database files inside the container.
+
+Note: All the buttons in the frontend worked without hassle after the modifications so this includes also excercise 2.10.
