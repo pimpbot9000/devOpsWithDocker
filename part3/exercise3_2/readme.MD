@@ -1,4 +1,4 @@
-#Excercise 3.2
+# Excercise 3.2
 
 See a link to another [repo](https://github.com/pimpbot9000/4-ratikka-service). There's CircleCI than runs the eslint (and only lint because there are no tests :P), 
 builds and pushes the image in DockerHub and deploys the whole shabang to Heroku.
