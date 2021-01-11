@@ -47,3 +47,7 @@ CMD npm start
 ```
 
 Note: also did some optimization to reduce nof layers.
+
+### Step 4.
+
+Run ```docker-compose up``` to up the whole shabang to see if everything still works, it did, yay!
