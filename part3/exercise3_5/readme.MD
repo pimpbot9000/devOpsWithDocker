@@ -2,8 +2,9 @@
 
 ### Optimizing image sizes
 
-Sizes from previous exercise:
-Frontend size before: 489MB
+Sizes from previous exercise: <br/>
+<br/>
+Frontend size before: 489MB <br/>
 Backend size before:  295MB
 
 Both use the Node/alpine image as a base. I did not get it what's the Golang all about??
@@ -48,8 +49,7 @@ RUN apt-get update && apt-get install -y curl && curl -sL https://deb.nodesource
 EXPOSE 8000
 CMD npm start
 ```
-
-
+After. Node/Alpine as base:
 ```
 FROM node:16-alpine3.11
 WORKDIR /usr/backend
@@ -59,9 +59,9 @@ EXPOSE 8000
 CMD npm start
 ```
 
-Size: ```295MB``` to ```155MB```
+Size: From ```295MB``` to ```155MB```
 
-### Does it work
+### Does it work?
 
 Run ```docker-compose up``` and one shall receive.
 
