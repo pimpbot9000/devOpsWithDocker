@@ -1,33 +1,53 @@
-# Exercise 3.3
+# Exercise 3.4
 
-## A Dockerized builder of Docker images
+### Step 1.
+Clone Exercise 2.10
 
-Wait what? The container downloads a project from git, builds a docker image and pushes it to Docker Hub. 
-The container itself does not contain Docker, it leverages the Docker of the host machine by mounting
-the mysterious volume ```/var/run/docker.sock```.
+### Step 2.
 
-## Usage
+Edit the **Dockerfile** for the frontend by adding a non-root user. For some reason (did not bother to find out why)
+the ```npm start``` apparently caused some write operations since there was an error message 
+```Error: EACCES: permission denied, mkdir '/usr/frontend/dist'```. So to hell with it - I gave the non-root
+user ownership to the whole ```/usr/frontend``` folder with proper permissions.
 
+**Dockerfile** for the frontend:
 ```
-docker run -v /var/run/docker.sock:/var/run/docker.sock [Name of this image] [Name for the image targeted for building] \ 
-  [HTTPS of github containing the project] [DockerHub username] [DockerHub password]
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_10.x | bash && \
+    apt install -y nodejs && useradd -m app
+WORKDIR /usr/frontend
+RUN chown app: /usr/frontend
+RUN chmod 700 /usr/frontend
+COPY frontend-example-docker-master .
+RUN npm install
+USER app
+EXPOSE 5000
+CMD npm start
 ```
 
-For example, let's build this first:
+### Step 3.
+
+Like before, edited the **Dockerfile** of the backend by adding a non-root user. This time around there was an issue with
+```logs.txt``` file. In short, I created a empty ```logs.txt``` file and gave the non-root user ownership to this file
+with proper permissions:
+
+**Dockerfile** for the backend:
+```  
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && \
+    apt install -y nodejs && useradd -m app
+WORKDIR /usr/backend
+COPY backend-example-docker-master .
+RUN touch logs.txt && chown app: logs.txt && chmod 700 logs.txt
+RUN npm install
+USER app
+EXPOSE 8000
+CMD npm start
 ```
-docker build . -t docker_builder
-```
 
-Then let's build some poor bastards Dockerizable project (which contains Dockerfile) and put it into Docker Hub as our own:
-```
-docker run -v /var/run/docker.sock:/var/run/docker.sock docker_builder https://github.com/some-guy/some-dockerizable-project.git \
-  my-project my-username 1234567
-```
+Note: also did some optimization to reduce nof layers.
 
-This downloads the repo ```https://github.com/some-guy/some-project.git``` and builds an image ```my-username/my-project``` and pushes it into Dockerhub.
+### Step 4.
 
-Xzibit would be so damn proud!
-
-
-
-
+Run ```docker-compose up``` to up the whole shabang to see if everything still works, it did, yay!

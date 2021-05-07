@@ -1,63 +1,43 @@
-## Exercise 3.1
+# Excercise 3.2
 
-### Optimizing image sizes
+See a link to another [repo](https://github.com/pimpbot9000/4-ratikka-service). There's CircleCI than runs the eslint (and only lint because there are no tests :P), 
+builds and pushes the image in DockerHub and deploys the whole shabang to Heroku.
 
-### Dockerfile for frontend image
-
-Before
-
-```
-FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y curl
-WORKDIR /usr/frontend
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
-RUN apt install -y nodejs
-COPY frontend-example-docker-master .
-RUN npm install
-EXPOSE 5000
-CMD npm start
-```
-
-After
+The ```config.yml``` for **CircleCI**.
 
 ```
-FROM ubuntu:16.04
-WORKDIR /usr/frontend
-COPY frontend-example-docker-master .
-RUN apt-get update && apt-get install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs \
-  && apt-get purge -y --auto-remove curl && rm -rf /var/lib/apt/lists/* && npm install
-EXPOSE 5000
-CMD npm start
+version: 2.1
+orbs:
+  docker: circleci/docker@1.5.0
+  heroku: circleci/heroku@1.2.4
+
+jobs:  
+  eslint:
+    docker:
+      - image: cimg/node:14.10.1
+        auth:
+          username: $DOCKER_LOGIN
+          password: $DOCKER_PASSWORD
+    steps:
+      - checkout
+      - run: echo "running my CI/CD"
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run: npm run lint  
+
+workflows:
+  lint_and_test:
+    jobs:
+      - eslint          
+      - docker/publish:
+            image: pimpbot9000/4-tram-service
+            tag: 'latest'
+      - heroku/deploy-via-git:            
+            filters:
+              branches:
+                only: master
+
 ```
 
-The size went down from ```524MB``` to ```488MB```.
-
-### Dockerfile for the backend image
-
-Before
-
-```
-FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y curl
-WORKDIR /usr/backend
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
-RUN apt install -y nodejs
-COPY backend-example-docker-master .
-RUN npm install
-EXPOSE 8000
-CMD npm start
-```
-
-After
-
-```
-FROM ubuntu:16.04
-WORKDIR /usr/backend
-COPY backend-example-docker-master .
-RUN apt-get update && apt-get install -y curl && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt install -y nodejs \
-  && npm install && apt-get purge -y --auto-remove curl && rm -rf /var/lib/apt/lists/*
-EXPOSE 8000
-CMD npm start
-```
-Backend image size went down from ```330MB``` to ```294MB```.
-
+There's also a ```heroku.yml``` to tell Heroku what to actually do with all that stuff pushed there.
