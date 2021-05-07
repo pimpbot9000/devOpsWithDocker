@@ -1,4 +1,4 @@
-# Exercise 3.4
+# Exercise 3.3
 
 ### Step 1.
 Clone Exercise 2.10

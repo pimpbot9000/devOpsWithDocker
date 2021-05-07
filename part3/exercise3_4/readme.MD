@@ -1,4 +1,4 @@
-## Exercise 3.1
+## Exercise 3.4
 
 ### Optimizing image sizes
 
@@ -60,4 +60,6 @@ EXPOSE 8000
 CMD npm start
 ```
 Backend image size went down from ```330MB``` to ```294MB```.
+
+Run ```docker-compose up``` to see if everything still works - and it does, yay!
 
