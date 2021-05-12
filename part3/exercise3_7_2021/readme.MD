@@ -2,6 +2,8 @@
 
 ### Optimizing image sizes of some personal project
 
+Project can be found [here](https://github.com/pimpbot9000/4-ratikka-service)
+
 Original Dockerfile (``960MB!!!`)
 
 ```
@@ -14,7 +16,7 @@ EXPOSE 3000
 CMD npm start
 ```
 
-Minimized (```186MB```) dockerfile with extra security
+Minimized (```186MB```) dockerfile with added security
 ```
 FROM node:16-alpine3.11
 
@@ -28,3 +30,5 @@ USER appuser
 EXPOSE 3000
 CMD npm start
 ```
+```
+Nothing special really but still the size went down considerably.
