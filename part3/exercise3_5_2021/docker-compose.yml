@@ -17,8 +17,10 @@ services:
     container_name: backend
 
   frontend:
-    build: ./example-frontend/.
-    image: frontend:exercise-3.5
+    build:
+      context: ./example-frontend/.
+      dockerfile: Dockerfile.node
+    image: frontend:exercise-3.5-node
     environment:
       - API_URL=http://localhost/api
     container_name: frontend
