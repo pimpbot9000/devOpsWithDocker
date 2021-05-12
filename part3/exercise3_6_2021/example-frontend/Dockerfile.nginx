@@ -1,0 +1,7 @@
+FROM node:16-alpine3.11 as build-stage
+WORKDIR /usr/frontend
+COPY . .
+RUN npm install && npm run build 
+FROM nginx
+COPY default.conf /etc/nginx/conf.d
+COPY --from=build-stage /usr/frontend/build /usr/share/nginx/html

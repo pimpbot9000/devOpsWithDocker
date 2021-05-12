@@ -1,0 +1,10 @@
+FROM ubuntu:16.04
+
+WORKDIR /usr/local
+RUN apt-get update && apt-get install -y wget && wget https://golang.org/dl/go1.16.4.linux-amd64.tar.gz
+RUN tar -xvf go1.16.4.linux-amd64.tar.gz
+WORKDIR /usr/app
+COPY . .
+RUN GOROOT=/usr/local/go GOPATH=$HOME/go PATH=$GOPATH/bin:$GOROOT/bin:$PATH go build
+EXPOSE 8080
+CMD ./server
