@@ -46,7 +46,7 @@ func CreateMessage(context *gin.Context) {
 		context.Status(501)
 		return
 	}
-	fmt.Println("Message receives")
+
 	var message Message
 	context.BindJSON(&message)
 	_, err = pgdb.Model(&message).Insert()

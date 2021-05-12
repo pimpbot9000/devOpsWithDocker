@@ -3,37 +3,36 @@ version: "3.5"
 services:
 
   backend:
-    build: ./backend/.
-    image: backend:exercise-3.7
+    build:
+      context: ./example-backend/.
+      dockerfile: Dockerfile.golan
+    image: backend:exercise-3.5-golan
+    
     environment:
-      - PORT=8080    
+      - REQUEST_ORIGIN=http://localhost
       - REDIS_HOST=redis
-      - REQUEST_ORIGIN=http://localhost      
-      - REDIS_PORT=6379
       - POSTGRES_HOST=db
       - POSTGRES_PASSWORD=password123
-      - POSTGRES_DATABASE=postgres
-      
+          
     container_name: backend
 
   frontend:
-    build: ./frontend/.
-    image: frontend:exercise-3.7
+    build: ./example-frontend/.
+    image: frontend:exercise-3.5
     environment:
-      - API_URL=http://backend/api
+      - API_URL=http://localhost/api
     container_name: frontend
 
   redis:
-    image: redis   
+    image: redis
 
   db:
     image: postgres
     restart: unless-stopped
     environment:
       POSTGRES_PASSWORD: password123
-      POSTGRES_DB: postgres
       PGDATA: ./database
-    container_name: postgres_database
+    container_name: database_backend
     volumes:
       - database:/database
 
