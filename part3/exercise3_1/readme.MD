@@ -1,4 +1,4 @@
-# Excercise 3.2
+# Excercise 3.1
 
 See a link to another [repo](https://github.com/pimpbot9000/4-ratikka-service). There's CircleCI than runs lint, tests and finally pushes the project to Heroku.
 
