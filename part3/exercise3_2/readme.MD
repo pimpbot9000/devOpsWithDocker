@@ -1,4 +1,4 @@
-# Exercise 3.3
+# Exercise 3.2
 
 ## A Dockerized builder of Docker images
 
